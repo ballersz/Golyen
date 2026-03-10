@@ -70,15 +70,14 @@ footer{padding:48px 1rem;background:var(--footer);text-align:center;border-top:1
 @media(max-width:600px){.hero{min-height:60vh}.container{padding:40px 1rem}.project-grid{gap:18px}.footer{padding:30px 1rem}}
 @media (max-width: 520px) {
     nav {
-        flex-direction: column;      /* stack logo + menu */
-        align-items: center;         /* center everything horizontally */
-        gap: 10px;                   /* spacing between logo and links */
-        padding: 10px 1rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
     }
 
     nav ul {
-        flex-direction: column;      /* stack links vertically */
-        gap: 8px;                    /* smaller gap between links */
-        align-items: center;         /* center links */
-    }
+        justify-content: center;   /* center links */
+        width: 100%;
+        }
                                                                                       }
+
