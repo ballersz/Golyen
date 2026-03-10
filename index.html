@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Guillien's Portfolio</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guillien's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-        <nav aria-label="Primary navigation">
-            <div class="logo">PORTFOLIO</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#album">Album</a></li>
-            </ul>
-        </nav>
+    <nav aria-label="Primary navigation">
+        <div class="logo">PORTFOLIO</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#album">Album</a></li>
+        </ul>
+    </nav>
 
-        <header id="home" class="hero">
-            <h1>Hi, I'm <span class="highlight">Guillien Arthaz V. Biscante</span></h1>
+    <header id="home" class="hero">
+        <h1>Hi, I'm <span class="highlight">Guillien Arthaz V. Biscante</span></h1>
+        <p>Web Developer | Designer</p>
+        <a href="#projects" class="btn">View My Work</a>
+    </header>
 
-            <p>Web Developer | Designer</p>
-
-            <a href="#projects" class="btn">View My Work</a>
-
-        </header>
-
-        <main id="main">
+    <main id="main">
+        <!-- About Section -->
         <section id="about" class="about" aria-labelledby="about-heading">
             <div class="about-background"></div>
             <div class="about-content">
@@ -39,107 +37,61 @@
             </div>
         </section>
 
+        <!-- Projects Section -->
         <section id="projects" class="container" aria-labelledby="projects-heading">
             <h2 id="projects-heading">Featured Projects</h2>
-            
             <div class="project-grid">
                 <article class="card" aria-labelledby="proj-1-title">
                     <img src="images/loveletterSS.jpg" alt="Screenshot of Project One" class="card-img">
                     <h3 id="proj-1-title">Project One</h3>
                     <p>A Love Letter</p>
-
                     <a href="loveletter.html" class="btn">View Project</a>
                 </article>
-
                 <article class="card" aria-labelledby="proj-2-title">
                     <img src="images/gorilla.jpg" alt="Screenshot of Project Two" class="card-img">
                     <h3 id="proj-2-title">Project Two</h3>
                     <p>Gorilla Jump</p>
-
                     <a href="GorillaJump.html" class="btn">View Project</a>
                 </article>
-
                 <article class="card" aria-labelledby="proj-3-title">
                     <img src="images/numberguessgame.jpg" alt="Screenshot of Project Three" class="card-img">
                     <h3 id="proj-3-title">Project Three</h3>
                     <p>Number Guess Game</p>
-
                     <a href="RandomGame.html" class="btn">View Project</a>
                 </article>
-
             </div>
-
         </section>
 
+        <!-- Gallery Section -->
         <section id="album" class="container gallery" aria-labelledby="album-heading">
             <h2 id="album-heading">Photo Album</h2>
-            <div class="gallery-grid" aria-live="polite">
-                <figure class="gallery-item"><img loading="lazy" src="images/1000039773.jpg" alt="Photo 1"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000034770.jpg" alt="Photo 2"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000036377.jpg" alt="Photo 3"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000039776.jpg" alt="Photo 4"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000039778.webp" alt="Photo 5"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000031883.jpg" alt="Photo 6"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000030338.jpg" alt="Photo 7"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000036581.jpg" alt="Photo 8"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000034510.jpg" alt="Photo 9"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000031359.jpg" alt="Photo 10"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000030336.jpg" alt="Photo 11"></figure>
-                <figure class="gallery-item"><img loading="lazy" src="images/1000034508.jpg" alt="Photo 12"></figure>
+            <div class="gallery-grid">
+                <figure class="gallery-item"><a href="images/1000039773.jpg"><img loading="lazy" src="images/1000039773.jpg" alt="Photo 1"></a></figure>
+                <figure class="gallery-item"><a href="images/1000034770.jpg"><img loading="lazy" src="images/1000034770.jpg" alt="Photo 2"></a></figure>
+                <figure class="gallery-item"><a href="images/1000036377.jpg"><img loading="lazy" src="images/1000036377.jpg" alt="Photo 3"></a></figure>
+                <figure class="gallery-item"><a href="images/1000039776.jpg"><img loading="lazy" src="images/1000039776.jpg" alt="Photo 4"></a></figure>
+                <figure class="gallery-item"><a href="images/1000039778.webp"><img loading="lazy" src="images/1000039778.webp" alt="Photo 5"></a></figure>
+                <figure class="gallery-item"><a href="images/1000031883.jpg"><img loading="lazy" src="images/1000031883.jpg" alt="Photo 6"></a></figure>
+                <figure class="gallery-item"><a href="images/1000030338.jpg"><img loading="lazy" src="images/1000030338.jpg" alt="Photo 7"></a></figure>
+                <figure class="gallery-item"><a href="images/1000036581.jpg"><img loading="lazy" src="images/1000036581.jpg" alt="Photo 8"></a></figure>
+                <figure class="gallery-item"><a href="images/1000034510.jpg"><img loading="lazy" src="images/1000034510.jpg" alt="Photo 9"></a></figure>
+                <figure class="gallery-item"><a href="images/1000031359.jpg"><img loading="lazy" src="images/1000031359.jpg" alt="Photo 10"></a></figure>
+                <figure class="gallery-item"><a href="images/1000030336.jpg"><img loading="lazy" src="images/1000030336.jpg" alt="Photo 11"></a></figure>
+                <figure class="gallery-item"><a href="images/1000034508.jpg"><img loading="lazy" src="images/1000034508.jpg" alt="Photo 12"></a></figure>
             </div>
         </section>
 
-        <div id="lightbox" class="lightbox" aria-hidden="true">
-            <button class="lightbox-close" aria-label="Close">×</button>
-            <img class="lightbox-img" src="" alt="" />
-        </div>
-
+        <!-- Footer Section -->
         <footer id="contact">
-
             <h2>Let's Connect</h2>
-            <p>Email: <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJvrckCTSSRxKlrSfXwdpKjphMRltvVRtqlgpTtSfxHFcxfkjZvSKXkZQWFXBFjkThVqjGV">gavbiscante@gmail.com</a></p>
+            <p>Email: <a href="mailto:gavbiscante@gmail.com">gavbiscante@gmail.com</a></p>
             <div class="socials" aria-label="Social links">
                 <a href="https://www.facebook.com/GuillienBiscante/">Facebook</a> |
                 <a href="https://www.instagram.com/dinoguiii/">Instagram</a>
-
             </div>
-
             <p class="copy">&copy; 2026 All Rights Reserved</p>
-
         </footer>
-        </main>
+    </main>
 
-        <script>
-        (function(){
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = lightbox.querySelector('.lightbox-img');
-            const closeBtn = lightbox.querySelector('.lightbox-close');
-            document.querySelectorAll('.gallery-item img').forEach(img=>{
-                img.addEventListener('click', ()=>{
-                    lightboxImg.src = img.src.replace('&w=1200&h=800','&w=1600&h=1200');
-                    lightboxImg.alt = img.alt || '';
-                    lightbox.classList.add('open');
-                    lightbox.setAttribute('aria-hidden','false');
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-            function close(){
-                lightbox.classList.remove('open');
-                lightbox.setAttribute('aria-hidden','true');
-                lightboxImg.src = '';
-                document.body.style.overflow = '';
-            }
-            closeBtn.addEventListener('click', close);
-            lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) close(); });
-            document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
-        })();
-        </script>
-
-    </body>
-
-</html>
-
-
-
-
-
+</body>
+    </html>
