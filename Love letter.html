@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter</title>
+    <link rel="stylesheet" href="love-letter.css">
+</head>
+<body>
+    <div class="envelope" id="envelope">
+        <div class="letter">
+            My Dearest GF,<br><br>
+            From the moment I met you, my world has been filled with light and joy. Your smile brightens my darkest days, and your laughter is the sweetest melody I've ever heard. Every time I think of you, my heart races, and I feel an overwhelming sense of peace and happiness.<br><br>
+            You are my everything – my love, my inspiration, my best friend. I cherish every moment we spend together, and I look forward to a lifetime of adventures by your side. Your kindness, your strength, and your beauty both inside and out make you the most amazing person I know.<br><br>
+            I love you more than words can express, and I promise to always be there for you, to support you, and to make you feel as loved as you make me feel.<br><br>
+            Forever yours,<br>
+            [Victor]
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('open');
+        });
+
+        // Floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            const emoji = document.createElement('span');
+            emoji.innerHTML = '❤️';
+            emoji.className = 'heart-emoji';
+            heart.appendChild(emoji);
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        setInterval(createHeart, 800);
+    </script>
+</body>
+</html>

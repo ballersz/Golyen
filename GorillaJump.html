@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jumping Gorilla Game</title>
+    <link rel="stylesheet" href="gorilla-game.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>Jumping Gorilla</h1>
+            <div class="score-board">
+                <p>Score: <span id="score">0</span></p>
+                <p>Lives: <span id="lives">3</span></p>
+            </div>
+        </div>
+
+        <div class="game-area" id="gameArea">
+            <div class="gorilla" id="gorilla">🦍</div>
+        </div>
+
+        <div class="game-controls">
+            <p>Press <strong>SPACEBAR</strong> or <strong>ARROW UP</strong> to Jump</p>
+            <button id="startBtn" class="btn-start">Start Game</button>
+            <button id="restartBtn" class="btn-restart" style="display:none;">Restart Game</button>
+        </div>
+
+        <div id="gameOver" class="game-over-modal" style="display:none;">
+            <div class="modal-content">
+                <h2>Game Over!</h2>
+                <p>Final Score: <span id="finalScore">0</span></p>
+                <button id="playAgain" class="btn-play-again">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gameArea = document.getElementById('gameArea');
+        const gorilla = document.getElementById('gorilla');
+        const scoreDisplay = document.getElementById('score');
+        const livesDisplay = document.getElementById('lives');
+        const startBtn = document.getElementById('startBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const gameOverModal = document.getElementById('gameOver');
+        const finalScoreDisplay = document.getElementById('finalScore');
+        const playAgainBtn = document.getElementById('playAgain');
+
+        let score = 0;
+        let lives = 3;
+        let isJumping = false;
+        let gameActive = false;
+        let velocityY = 0;
+        const gravity = 0.5;
+        const jumpStrength = -12;
+        let gorillaPosY = gameArea.clientHeight - 80;
+
+        // Game dimensions
+        const gameWidth = gameArea.clientWidth;
+        const gameHeight = gameArea.clientHeight;
+        const gorillaSize = 60;
+
+        // Initialize game
+        startBtn.addEventListener('click', startGame);
+        playAgainBtn.addEventListener('click', startGame);
+        document.addEventListener('keydown', handleKeyPress);
+
+        function startGame() {
+            score = 0;
+            lives = 3;
+            isJumping = false;
+            gameActive = true;
+            velocityY = 0;
+            gorillaPosY = gameArea.clientHeight - 80;
+            
+            scoreDisplay.textContent = score;
+            livesDisplay.textContent = lives;
+            gameOverModal.style.display = 'none';
+            startBtn.style.display = 'none';
+            restartBtn.style.display = 'inline-block';
+            
+            // Clear obstacles
+            document.querySelectorAll('.obstacle').forEach(obs => obs.remove());
+            document.querySelectorAll('.coin').forEach(coin => coin.remove());
+            
+            updateGorilla();
+            spawnObstacles();
+            gameLoop();
+        }
+
+        function handleKeyPress(e) {
+            if ((e.code === 'Space' || e.code === 'ArrowUp') && gameActive && !isJumping) {
+                velocityY = jumpStrength;
+                isJumping = true;
+            }
+        }
+
+        function gameLoop() {
+            if (!gameActive) return;
+
+            // Apply gravity
+            velocityY += gravity;
+            gorillaPosY += velocityY;
+
+            // Ground collision
+            if (gorillaPosY >= gameArea.clientHeight - 80) {
+                gorillaPosY = gameArea.clientHeight - 80;
+                velocityY = 0;
+                isJumping = false;
+            }
+
+            // Ceiling collision
+            if (gorillaPosY <= 0) {
+                gorillaPosY = 0;
+                velocityY = 0;
+            }
+
+            updateGorilla();
+            checkCollisions();
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        function updateGorilla() {
+            gorilla.style.top = gorillaPosY + 'px';
+        }
+
+        function spawnObstacles() {
+            const spawnInterval = setInterval(() => {
+                if (!gameActive) {
+                    clearInterval(spawnInterval);
+                    return;
+                }
+
+                // Randomly spawn obstacles or coins
+                if (Math.random() > 0.3) {
+                    createObstacle();
+                } else {
+                    createCoin();
+                }
+            }, 1500);
+        }
+
+        function createObstacle() {
+            const obstacle = document.createElement('div');
+            obstacle.className = 'obstacle';
+            obstacle.style.left = gameWidth - 50 + 'px';
+            obstacle.style.top = Math.random() * (gameHeight - 100) + 'px';
+            gameArea.appendChild(obstacle);
+
+            let obstacleX = gameWidth - 50;
+            const moveInterval = setInterval(() => {
+                obstacleX -= 5;
+                obstacle.style.left = obstacleX + 'px';
+
+                if (obstacleX < -50) {
+                    clearInterval(moveInterval);
+                    obstacle.remove();
+                }
+            }, 20);
+        }
+
+        function createCoin() {
+            const coin = document.createElement('div');
+            coin.className = 'coin';
+            coin.style.left = gameWidth - 30 + 'px';
+            coin.style.top = Math.random() * (gameHeight - 100) + 'px';
+            gameArea.appendChild(coin);
+
+            let coinX = gameWidth - 30;
+            const moveInterval = setInterval(() => {
+                coinX -= 5;
+                coin.style.left = coinX + 'px';
+
+                if (coinX < -30) {
+                    clearInterval(moveInterval);
+                    coin.remove();
+                }
+            }, 20);
+        }
+
+        function checkCollisions() {
+            const gorillas = document.querySelectorAll('.gorilla');
+            const obstacles = document.querySelectorAll('.obstacle');
+            const coins = document.querySelectorAll('.coin');
+
+            gorillas.forEach(g => {
+                const gRect = g.getBoundingClientRect();
+
+                obstacles.forEach(obs => {
+                    const obsRect = obs.getBoundingClientRect();
+                    if (isColliding(gRect, obsRect)) {
+                        lives--;
+                        livesDisplay.textContent = lives;
+                        obs.remove();
+                        if (lives <= 0) {
+                            endGame();
+                        }
+                    }
+                });
+
+                coins.forEach(coin => {
+                    const coinRect = coin.getBoundingClientRect();
+                    if (isColliding(gRect, coinRect)) {
+                        score += 10;
+                        scoreDisplay.textContent = score;
+                        coin.remove();
+                    }
+                });
+            });
+        }
+
+        function isColliding(rect1, rect2) {
+            return !(rect1.right < rect2.left ||
+                     rect1.left > rect2.right ||
+                     rect1.bottom < rect2.top ||
+                     rect1.top > rect2.bottom);
+        }
+
+        function endGame() {
+            gameActive = false;
+            finalScoreDisplay.textContent = score;
+            gameOverModal.style.display = 'flex';
+            restartBtn.style.display = 'none';
+            startBtn.style.display = 'inline-block';
+            startBtn.textContent = 'Start New Game';
+        }
+    </script>
+</body>
+</html>
