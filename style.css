@@ -14,7 +14,7 @@
 
 /* ---------------- Reset ---------------- */
 *{margin:0;padding:0;box-sizing:border-box}
-html, body {height:100%; font-family:"Poppins",sans-serif; font-size:16px; background:var(--bg); color:var(--text); line-height:1.6; scroll-behavior:smooth; overflow-x:hidden;}
+html, body {height:100%; font-family:"Poppins",sans-serif; font-size:16px; background:var(--bg); color:var(--text); line-height:1.6;  overflow-x:hidden;}
 a{color:inherit; text-decoration:none;}
 ul{list-style:none;}
 
@@ -130,3 +130,4 @@ section, footer {
     }
     nav ul li a{text-align:center;}
                                       }
+
